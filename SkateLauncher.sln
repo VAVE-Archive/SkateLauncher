@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkateLauncher", "SkateLauncher.csproj", "{5DB30200-3DEC-42AF-BBF1-F58EB2617EE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skeightcore", "skeightcore\skeightcore.csproj", "{66150536-9792-4C53-8B94-DCCDC124C53A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DB30200-3DEC-42AF-BBF1-F58EB2617EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB30200-3DEC-42AF-BBF1-F58EB2617EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB30200-3DEC-42AF-BBF1-F58EB2617EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB30200-3DEC-42AF-BBF1-F58EB2617EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66150536-9792-4C53-8B94-DCCDC124C53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66150536-9792-4C53-8B94-DCCDC124C53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66150536-9792-4C53-8B94-DCCDC124C53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66150536-9792-4C53-8B94-DCCDC124C53A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {000FEC71-1681-4760-A099-E872C16B071B}
+	EndGlobalSection
+EndGlobal
