@@ -130,69 +130,20 @@ namespace SkateLauncher {
 
             string args = sb.ToString();
 
+            /*
             if(!Debugger.IsAttached) {
-                switch (launchSettings.Username.ToLower()) {
-                    case "adolf":
-                        MessageBox.Show("Error E2051A\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "nigga":
-                        MessageBox.Show("Error E2051A\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "nigger":
-                        MessageBox.Show("Error E2051A\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "slave":
-                        MessageBox.Show("Error E2051A\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "pikey":
-                        MessageBox.Show("Error E2051A\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "coon":
-                        MessageBox.Show("Error E2051A\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "sex":
-                        MessageBox.Show("Error E2051B\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "hentai":
-                        MessageBox.Show("Error E2051B\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "porn":
-                        MessageBox.Show("Error E2051B\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "pussy":
-                        MessageBox.Show("Error E2051B\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "dick":
-                        MessageBox.Show("Error E2051B\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    case "ass":
-                        MessageBox.Show("Error E2051B\nPlease report this to the Sk8Launcher devs.");
-                        Application.Exit();
-                        break;
-                    default:
-                        var proc = new Process();
-                        proc.StartInfo.FileName = executablePath;
-                        proc.StartInfo.Arguments = args;
-
-                        proc.Start();
-                        break;
-                }
+                
             }
             else {
                 var fbox = new Form2(args);
                 fbox.Show();
-            }
+            }*/
+
+            var proc = new Process();
+            proc.StartInfo.FileName = executablePath;
+            proc.StartInfo.Arguments = args;
+
+            proc.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
