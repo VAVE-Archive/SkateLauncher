@@ -216,7 +216,7 @@ namespace SkateLauncher {
         }
 
         private void cbMultiplayer_CheckedChanged(object sender, EventArgs e) {
-            groupBox1.Enabled = cbMultiplayer.Checked;
+            //groupBox1.Enabled = cbMultiplayer.Checked;
         }
 
         static void OnProcessExit(object sender, EventArgs e) {
