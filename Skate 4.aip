@@ -26,10 +26,10 @@
     <ROW Property="ARPURLUPDATEINFO" Value="https://discord.com/channels/994919759038664714/994921015320780890"/>
     <ROW Property="AiPreferFastOem" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="EA"/>
-    <ROW Property="ProductCode" Value="1033:{C1E2F79F-7668-462B-96F6-7BDF2CFDBF1B} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{6BF53968-BD7F-4507-8095-BD2D005ED69C} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Skate 4 Playtest 1"/>
-    <ROW Property="ProductVersion" Value="1.1.1.0" Type="32" TargetFile="SkateLauncher.exe"/>
+    <ROW Property="ProductVersion" Value="0.1.1.4" Type="32" TargetFile="SkateLauncher.exe"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{C3376405-897C-4082-898E-23565D1E638A}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
