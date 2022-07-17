@@ -119,11 +119,12 @@
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
-            "VAVE Dynamic Gameserver - UK (sk4.uk-gsdyn.skeight4warehouse.com)"});
+            "VAVE Dynamic Gameserver - UK (sk8dyngs.ddns.net)"});
             this.listBox1.Location = new System.Drawing.Point(3, 16);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(440, 144);
             this.listBox1.TabIndex = 0;
+            this.listBox1.Visible = false;
             // 
             // groupBox3
             // 

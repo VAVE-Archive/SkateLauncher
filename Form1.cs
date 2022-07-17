@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.Win32;
+using System.Net;
 
 namespace SkateLauncher {
     public partial class Form1 : Form {
@@ -93,21 +94,30 @@ namespace SkateLauncher {
             var launchSettings = new LaunchData();
 
             if(cbMultiplayer.Checked) {
-                launchSettings.MultiplayerEnabled = true;
+                if(UserHasAccessToMultiplayer()) {
+                    launchSettings.MultiplayerEnabled = true;
 
-                launchSettings.PickedFromServerList = !checkBox3.Checked;
+                    launchSettings.PickedFromServerList = !checkBox3.Checked;
 
-                if(checkBox3.Checked) {
-                    launchSettings.ServerIP = $"{textBox1.Text}:{textBox2.Text}";
+                    if (checkBox3.Checked) {
+                        launchSettings.ServerIP = $"{textBox1.Text}:{textBox2.Text}";
+                    }
+                    else {
+                        launchSettings.ServerIP = "sk8dyngs.ddns.net:254";
+                    }
+
+                    launchSettings.Username = textBox4.Text;
+
+                    launchSettings.DisableWatermark = checkBox2.Checked;
+                    launchSettings.PresenceEnabled = checkBox1.Checked;
                 }
                 else {
-                    launchSettings.ServerIP = "sk4.uk-gsdyn.skeight4warehouse.com:254";
+                    // doesnt have access
+
+                    MessageBox.Show("You do not have access to multiplayer. Please apply by DM'ing a member of support staff.");
+                    return;
+                    //Application.Exit();
                 }
-
-                launchSettings.Username = textBox4.Text;
-
-                launchSettings.DisableWatermark = checkBox2.Checked;
-                launchSettings.PresenceEnabled = checkBox1.Checked;
             }
             else {
                 launchSettings.MultiplayerEnabled = false;
@@ -146,6 +156,21 @@ namespace SkateLauncher {
             proc.Start();
         }
 
+        private bool UserHasAccessToMultiplayer() {
+            bool allowed = false;
+            using (WebClient client = new WebClient()) {
+                string s = client.DownloadString("https://cdn.vavestudios.com/usergenerated/fupload/30757/allowlist.txt");
+
+                foreach (var line in s.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) {
+                    if (line == $"{Environment.UserName}:{Environment.MachineName}") {
+                        allowed = true;
+                    }
+                }
+            }
+
+            return allowed;
+        }
+
         private void Form1_Load(object sender, EventArgs e) {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             frm = this;
@@ -164,6 +189,12 @@ namespace SkateLauncher {
 
             textBox3.Text = data.AdditionalSwitches;
             checkBox5.Checked = data.UseAdditionalSwitches;
+
+            if(UserHasAccessToMultiplayer()) {
+                listBox1.Visible = true;
+            }
+
+            MessageBox.Show("RULES:\n- No racism whatsoever\n- NO cheats whatsoever\n- No disrespecting others\n\nIf any of those rules get broken by you, you will INSTANTLY get de-whitelisted from the Launcher meaning you wont be able to play."); ;
         }
 
         private void cbMultiplayer_CheckedChanged(object sender, EventArgs e) {
