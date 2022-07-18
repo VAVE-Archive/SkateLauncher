@@ -142,7 +142,7 @@ namespace SkateLauncher {
             string executablePath = "";
 
             if(File.Exists(assemblyPath + "\\skate.crack.exe")) {
-                assemblyPath = assemblyPath + "\\skate.crack.exe";
+                executablePath = assemblyPath + "\\skate.crack.exe";
             }
             else {
                 MessageBox.Show("Unable to find game executable in " + assemblyPath);
