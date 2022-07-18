@@ -42,11 +42,45 @@ namespace SkateLauncher {
             public bool UseAdditionalSwitches;
         }
 
+        private string GetFile() {
+            StackTrace st = new StackTrace(new StackFrame(true));
+            StackFrame sf = st.GetFrame(0);
+            return sf.GetFileName();
+        }
+
         private Settings LoadData() {
             var data = new Settings();
 
             // load in from registry
 
+            string iniPath = "";
+
+            if(File.Exists($"C:\\Users\\{Environment.UserName}\\Documents\\VAVE\\Outsourcing\\SK8\\settings.ini")) {
+                iniPath = $"C:\\Users\\{Environment.UserName}\\Documents\\VAVE\\Outsourcing\\SK8\\settings.ini";
+            }
+            else {
+                MessageBox.Show($"Cannot find settings file {"settings.ini"} at any of the storage locations\n {GetFile()}");
+
+                return data;
+            }
+
+            var ini = new IniFile(iniPath);
+
+            try {
+                data.DisableWatermark = bool.Parse(ini.Read("DisableWatermark"));
+                data.Multiplayer = bool.Parse(ini.Read("MultiplayerEnabled"));
+                data.SetUsername = ini.Read("Username");
+                data.AdditionalSwitches = ini.Read("AdditionalArgs");
+                data.UseAdditionalSwitches = bool.Parse(ini.Read("UsingAdditionalArgs"));
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+                Application.Exit();
+            }
+
+            return data;
+
+            /*
             try {
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\VAVE\\SK8\\Launcher")) {
                     if (key != null) {
@@ -64,11 +98,34 @@ namespace SkateLauncher {
             }
 
             return data;
+            */
         }
 
         private static void SaveData(Settings data) {
             // save data back into registry
 
+            if(!Debugger.IsAttached) {
+                string iniPath = "";
+
+                string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                if (File.Exists($"C:\\Users\\{Environment.UserName}\\Documents\\VAVE\\Outsourcing\\SK8\\settings.ini")) {
+                    iniPath = $"C:\\Users\\{Environment.UserName}\\Documents\\VAVE\\Outsourcing\\SK8\\settings.ini";
+                }
+
+                var ini = new IniFile(iniPath);
+                ini.Write("DisableWatermark", data.DisableWatermark.ToString().ToLower());
+                ini.Write("MultiplayerEnabled", data.Multiplayer.ToString().ToLower());
+                ini.Write("Username", data.SetUsername);
+                ini.Write("AdditionalArgs", data.AdditionalSwitches);
+                ini.Write("UsingAdditionalArgs", data.UseAdditionalSwitches.ToString().ToLower());
+
+                MessageBox.Show("Saved.");
+            }
+            else {
+                MessageBox.Show("Debugger attached, will not save.");
+            }
+
+            /*
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\VAVE\\SK8\\Launcher", true)) {
                 if (key != null) {
                     key.SetValue("Username", data.SetUsername);
@@ -78,16 +135,19 @@ namespace SkateLauncher {
                     key.SetValue("UseAdditionalSwitches", data.UseAdditionalSwitches.ToString().ToLower());
                 }
             }
+            */
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            string executablePath = assemblyPath + "\\skate.crack.exe";
+            string executablePath = "";
 
-            /*
-            var proc = new Process();
-            proc.StartInfo.FileName = executablePath;
-            proc.StartInfo.Arguments = $"-Online.ClientIsPresenceEnabled false -   -Client.ServerIp {textBox1.Text}:25200";
-            */
+            if(File.Exists(assemblyPath + "\\skate.crack.exe")) {
+                assemblyPath = assemblyPath + "\\skate.crack.exe";
+            }
+            else {
+                MessageBox.Show("Unable to find game executable in " + assemblyPath);
+                return;
+            }
 
             var sb = new StringBuilder();
 
@@ -123,7 +183,7 @@ namespace SkateLauncher {
                 launchSettings.MultiplayerEnabled = false;
             }
 
-            sb.Append("-thinclient 0 -Render.Rc2BridgeEnable 1 -Rc2Bridge. DeviceBackend Rc2BridgeBackend_Vulkan -RenderDevice. RenderCore2Enable 1");
+            //sb.Append("-thinclient 0 -Render.Rc2BridgeEnable 1 -Rc2Bridge. DeviceBackend Rc2BridgeBackend_Vulkan -RenderDevice. RenderCore2Enable 1");
 
             if (launchSettings.DisableWatermark) { sb.Append(" -DelMarUI.EnableWatermark false"); }
             if (!launchSettings.PresenceEnabled) { sb.Append(" -Online.ClientIsPresenceEnabled false"); }
@@ -136,6 +196,18 @@ namespace SkateLauncher {
 
             if(checkBox5.Checked) {
                 sb.Append($" {textBox3.Text}");
+            }
+
+            if(checkBox6.Checked) {
+                sb.Append("-WorldRender.ShadowmapsEnable false");
+            }
+
+            if(checkBox7.Checked) {
+                sb.Append("-DebugRender true");
+            }
+
+            if(checkBox8.Checked) {
+                sb.Append("-UI.DrawEnable false");
             }
 
             string args = sb.ToString();
@@ -202,17 +274,25 @@ namespace SkateLauncher {
         }
 
         static void OnProcessExit(object sender, EventArgs e) {
-            var newData = new Settings();
-
-            newData.SetUsername = frm.textBox4.Text;
-            newData.DisableWatermark = frm.checkBox2.Checked;
-            newData.Multiplayer = frm.cbMultiplayer.Checked;
-            newData.AdditionalSwitches = frm.textBox3.Text;
-            newData.UseAdditionalSwitches = frm.checkBox5.Checked;
-
-            SaveData(newData);
+            //SaveData(frm.GetSaveable());
 
             Process.Start("taskkill.exe", "/f /im skate.crack.exe /t");
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            SaveData(GetSaveable());
+        }
+
+        private Settings GetSaveable() {
+            var data = new Settings();
+
+            data.SetUsername = textBox4.Text;
+            data.DisableWatermark = checkBox2.Checked;
+            data.Multiplayer = cbMultiplayer.Checked;
+            data.AdditionalSwitches = textBox3.Text;
+            data.UseAdditionalSwitches = checkBox5.Checked;
+
+            return data;
         }
     }
 }
