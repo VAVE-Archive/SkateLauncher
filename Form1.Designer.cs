@@ -47,14 +47,14 @@
             this.cbMultiplayer = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -125,7 +125,8 @@
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
-            "sk8. Main Gameserver (Hosted on VAVEGS)"});
+            "sk8. Main Gameserver (Hosted on VAVEGS)",
+            "sk8. Testing Gameserver (Hosted on VAVEGS)"});
             this.listBox1.Location = new System.Drawing.Point(3, 16);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(440, 144);
@@ -318,15 +319,26 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Advanced";
             // 
-            // groupBox6
+            // label5
             // 
-            this.groupBox6.Controls.Add(this.checkBox6);
-            this.groupBox6.Location = new System.Drawing.Point(6, 172);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(180, 42);
-            this.groupBox6.TabIndex = 10;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Optimization";
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(22, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(148, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Configs in RED don\'t save yet";
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.ForeColor = System.Drawing.Color.Red;
+            this.checkBox8.Location = new System.Drawing.Point(6, 104);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(117, 17);
+            this.checkBox8.TabIndex = 11;
+            this.checkBox8.Text = "Disable UI Drawing";
+            this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // checkBox7
             // 
@@ -339,6 +351,16 @@
             this.checkBox7.TabIndex = 1;
             this.checkBox7.Text = "Debug Mode";
             this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.checkBox6);
+            this.groupBox6.Location = new System.Drawing.Point(6, 172);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(180, 42);
+            this.groupBox6.TabIndex = 10;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Optimization";
             // 
             // checkBox6
             // 
@@ -375,27 +397,6 @@
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Additional Switches:";
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.ForeColor = System.Drawing.Color.Red;
-            this.checkBox8.Location = new System.Drawing.Point(6, 104);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(117, 17);
-            this.checkBox8.TabIndex = 11;
-            this.checkBox8.Text = "Disable UI Drawing";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(22, 156);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(148, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Configs in RED don\'t save yet";
             // 
             // label6
             // 
@@ -434,7 +435,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "SK8 Launcher - v1.1.2 Beta 5";
+            this.Text = "SK8 Launcher - v1.1.2 Beta 5 - Debugger Attached";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);

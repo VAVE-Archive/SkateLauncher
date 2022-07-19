@@ -199,15 +199,15 @@ namespace SkateLauncher {
             }
 
             if(checkBox6.Checked) {
-                sb.Append("-WorldRender.ShadowmapsEnable false");
+                sb.Append(" -WorldRender.ShadowmapsEnable false");
             }
 
             if(checkBox7.Checked) {
-                sb.Append("-DebugRender true");
+                sb.Append(" -DebugRender true");
             }
 
             if(checkBox8.Checked) {
-                sb.Append("-UI.DrawEnable false");
+                sb.Append(" -UI.DrawEnable false");
             }
 
             string args = sb.ToString();
